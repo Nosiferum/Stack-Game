@@ -12,16 +12,30 @@ namespace DogukanKarabiyik.StackGame.Control {
         [SerializeField]
         private float movingSpeed = 5f;
 
+        [SerializeField]
+        private float rotatingSpeed = 50f;
+
+        [SerializeField]
+        public List<Transform> clothDestinations  = new List<Transform>();
+
         private Touch touch;
         private float deadZone = 0.8f;
         private float dragBoundary = 1.5f;
-     
+        private Vector3 eulerAngleVelocity;
+       
+        public int freeSpace { get; set; } = 0;
+        public int maxFreeSpace { get; private set; } = 4;
         public Rigidbody rb { get; private set; }
         public bool isMoving { get; set; } = false;
-
+        
         private void Awake() {
 
-            rb = GetComponent<Rigidbody>();
+            rb = GetComponent<Rigidbody>();        
+        }
+
+        private void Start() {
+            
+            eulerAngleVelocity = new Vector3(0, rotatingSpeed, 0);
         }
 
         private void FixedUpdate() {
@@ -29,7 +43,15 @@ namespace DogukanKarabiyik.StackGame.Control {
             if (isMoving) {
 
                 rb.MovePosition(transform.position + (Vector3.forward * runnigSpeed * Time.fixedDeltaTime));
-                          
+
+                //Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.fixedDeltaTime);
+                //rotatingRigidBody.MoveRotation(rb.rotation * deltaRotation);
+
+                //physics based rotation discarded due to design and camera constraints
+                transform.GetChild(0).Rotate(Vector3.up * rotatingSpeed * Time.deltaTime);
+
+                //transform.GetChild(2).Rotate(Vector3.up * rotatingSpeed * Time.deltaTime);
+
                 if (Input.touchCount > 0) {
 
                     touch = Input.GetTouch(0);
