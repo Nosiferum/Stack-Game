@@ -23,7 +23,7 @@ namespace DogukanKarabiyik.StackGame.Environment.Collectibles {
         private void Update() {
 
             if (isTouched) 
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, destinationVector, lerpTime * Time.deltaTime);                                      
+                transform.localPosition = Vector3.Lerp(transform.localPosition, destinationVector, lerpTime * Time.deltaTime);          
         }
 
         
@@ -31,10 +31,10 @@ namespace DogukanKarabiyik.StackGame.Environment.Collectibles {
 
             if (other.tag == "Player") {
                                                           
-                if (other.GetComponent<PlayerController>().freeSpace < other.GetComponent<PlayerController>().maxFreeSpace) {
+                if (other.GetComponent<ClothManager>().freeSpaceIndex < other.GetComponent<ClothManager>().maxFreeSpace) {
 
-                    transform.parent = other.transform.GetChild(0).GetChild(1).transform;
-                    Transform destinationTrasform = other.GetComponent<PlayerController>().clothDestinations[other.GetComponent<PlayerController>().freeSpace++];
+                    transform.parent = other.transform.GetChild(2).transform;
+                    Transform destinationTrasform = other.GetComponent<ClothManager>().clothDestinations[other.GetComponent<ClothManager>().freeSpaceIndex++];
                     destinationVector = new Vector3(destinationTrasform.localPosition.x, destinationTrasform.localPosition.y, destinationTrasform.localPosition.z);
                     isTouched = true;
                 }             

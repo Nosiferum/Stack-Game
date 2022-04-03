@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9211723946668969117}
+  - component: {fileID: 4750217088000808519}
+  - component: {fileID: 7684048897329048881}
   m_Layer: 0
   m_Name: Vertical Obstacle
   m_TagString: Untagged
@@ -31,6 +33,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4750217088000808519
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8185186619386890324}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5926888, y: 6.1844926, z: 0.61346877}
+  m_Center: {x: 0.012507796, y: -1.9088094, z: -0.012645662}
+--- !u!114 &7684048897329048881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8185186619386890324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6313281a98609ac4dac758cc2ce66fbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movingSpeed: 5
+  start: {fileID: 0}
+  destination: {fileID: 0}
 --- !u!1001 &5734927017943900063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82,6 +112,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8448830028588784925, guid: 68627e33933479343a3bfcbefea1fc68, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a504dd4e638ad4a47acbf1b9cc51b46a, type: 2}
     - target: {fileID: 919132149155446097, guid: 68627e33933479343a3bfcbefea1fc68, type: 3}
       propertyPath: m_Name
       value: Obstacle_01

@@ -14,17 +14,12 @@ namespace DogukanKarabiyik.StackGame.Control {
 
         [SerializeField]
         private float rotatingSpeed = 50f;
-
-        [SerializeField]
-        public List<Transform> clothDestinations  = new List<Transform>();
-
+       
         private Touch touch;
         private float deadZone = 0.8f;
         private float dragBoundary = 1.5f;
         private Vector3 eulerAngleVelocity;
-       
-        public int freeSpace { get; set; } = 0;
-        public int maxFreeSpace { get; private set; } = 4;
+           
         public Rigidbody rb { get; private set; }
         public bool isMoving { get; set; } = false;
         
@@ -40,7 +35,7 @@ namespace DogukanKarabiyik.StackGame.Control {
 
         private void FixedUpdate() {
 
-            if (isMoving) {
+            if (isMoving && gameObject.tag == "Player") {
 
                 rb.MovePosition(transform.position + (Vector3.forward * runnigSpeed * Time.fixedDeltaTime));
 
@@ -48,7 +43,7 @@ namespace DogukanKarabiyik.StackGame.Control {
                 //rotatingRigidBody.MoveRotation(rb.rotation * deltaRotation);
 
                 //physics based rotation discarded due to design and camera constraints
-                transform.GetChild(0).Rotate(Vector3.up * rotatingSpeed * Time.deltaTime);
+               // transform.GetChild(1).Rotate(Vector3.up * rotatingSpeed * Time.deltaTime);
 
                 //transform.GetChild(2).Rotate(Vector3.up * rotatingSpeed * Time.deltaTime);
 
