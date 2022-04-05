@@ -6,18 +6,10 @@ namespace DogukanKarabiyik.StackGame.Environment.Collectibles {
    
     public class PlayerCollectibleBehaviour : MonoBehaviour {
 
-
         private Vector3 playerVector;
+
         public bool isTouched { get; private set; } = false;
-
-
-        private void Update() {
-
-            //if (isTouched)
-            //    transform.Translate(playerVector);
-        }
-
-
+     
         private void OnTriggerEnter(Collider other) {
 
             if (other.tag == "Player") {

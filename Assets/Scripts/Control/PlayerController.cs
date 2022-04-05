@@ -18,35 +18,25 @@ namespace DogukanKarabiyik.StackGame.Control {
         private Touch touch;
         private float deadZone = 0.8f;
         private float dragBoundary = 1.5f;
-        private Vector3 eulerAngleVelocity;
-           
+                  
         public Rigidbody rb { get; private set; }
         public bool isMoving { get; set; } = false;
+        public bool isWon { get; set; } = false;
         
         private void Awake() {
 
             rb = GetComponent<Rigidbody>();        
         }
-
-        private void Start() {
-            
-            eulerAngleVelocity = new Vector3(0, rotatingSpeed, 0);
-        }
-
+        
         private void FixedUpdate() {
 
             if (isMoving && gameObject.tag == "Player") {
 
                 rb.MovePosition(transform.position + (Vector3.forward * runnigSpeed * Time.fixedDeltaTime));
-
-                //Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.fixedDeltaTime);
-                //rotatingRigidBody.MoveRotation(rb.rotation * deltaRotation);
-
+               
                 //physics based rotation discarded due to design and camera constraints
-               // transform.GetChild(1).Rotate(Vector3.up * rotatingSpeed * Time.deltaTime);
-
-                //transform.GetChild(2).Rotate(Vector3.up * rotatingSpeed * Time.deltaTime);
-
+                transform.GetChild(1).Rotate(Vector3.up * rotatingSpeed * Time.deltaTime);
+             
                 if (Input.touchCount > 0) {
 
                     touch = Input.GetTouch(0);
@@ -79,7 +69,7 @@ namespace DogukanKarabiyik.StackGame.Control {
 
         private void Update() {
 
-            if (!isMoving) 
+            if (!isMoving && !isWon) 
                 if (Input.touchCount > 0) 
                     isMoving = true;
         }
