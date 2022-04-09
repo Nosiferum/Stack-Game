@@ -63,14 +63,20 @@ namespace DogukanKarabiyik.StackGame.Control {
                             rb.MovePosition(transform.position + (Vector3.forward * runnigSpeed * Time.fixedDeltaTime) + (leftVector * movingSpeed * Time.fixedDeltaTime));
                         }                                                 
                     }
-                }                                
+                }
+
+                else if (Input.GetKey(KeyCode.Mouse1))
+                    rb.MovePosition(transform.position + (Vector3.forward * runnigSpeed * Time.fixedDeltaTime) + (Vector3.right * movingSpeed * Time.fixedDeltaTime));
+
+                else if (Input.GetKey(KeyCode.Mouse0))
+                    rb.MovePosition(transform.position + (Vector3.forward * runnigSpeed * Time.fixedDeltaTime) + (Vector3.left * movingSpeed * Time.fixedDeltaTime));
             }
         }
 
         private void Update() {
 
             if (!isMoving && !isWon) 
-                if (Input.touchCount > 0) 
+                if (Input.touchCount > 0 || Input.GetKey(KeyCode.Mouse0)) 
                     isMoving = true;
         }
     }
